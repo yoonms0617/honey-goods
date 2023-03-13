@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -24,8 +25,17 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.BDDMockito.times;
 
+@ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)
 class MemberServiceTest {
+
+    private static final String NAME = "윤민수";
+
+    private static final String NICKNAME = "yoonms";
+
+    private static final String EMAIL = "yoon@test.com";
+
+    private static final String PASSWORD = "123456789@";
 
     @Mock
     private MemberRepository memberRepository;
@@ -97,7 +107,7 @@ class MemberServiceTest {
     }
 
     private MemberSignupRequest createMemberSignupRequest() {
-        return new MemberSignupRequest("yoonminsoo", "yoonKun", "yoon@test.com", "123456789");
+        return new MemberSignupRequest(NAME, NICKNAME, EMAIL, PASSWORD);
     }
 
     private String encryptionPassword(String rawPassword) {
