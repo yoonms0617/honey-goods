@@ -9,9 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@ActiveProfiles("test")
 @DataJpaTest
 @Import(JpaAuditConfig.class)
 class MemberRepositoryTest {
@@ -42,11 +44,26 @@ class MemberRepositoryTest {
         Member find = memberRepository.findById(save.getId()).orElseThrow();
 
         assertThat(find.getId()).isEqualTo(save.getId());
-        assertThat(find.getName()).isEqualTo(find.getName());
-        assertThat(find.getNickname()).isEqualTo(find.getNickname());
-        assertThat(find.getEmail()).isEqualTo(find.getEmail());
-        assertThat(find.getPassword()).isEqualTo(find.getPassword());
-        assertThat(find.getRole()).isEqualTo(find.getRole());
+        assertThat(find.getName()).isEqualTo(save.getName());
+        assertThat(find.getNickname()).isEqualTo(save.getNickname());
+        assertThat(find.getEmail()).isEqualTo(save.getEmail());
+        assertThat(find.getPassword()).isEqualTo(save.getPassword());
+        assertThat(find.getRole()).isEqualTo(save.getRole());
+    }
+
+    @Test
+    @DisplayName("이메일로 회원을 조회한다.")
+    void findByEmail_test() {
+        Member save = memberRepository.save(YOON);
+
+        Member find = memberRepository.findByEmail(save.getEmail()).orElseThrow();
+
+        assertThat(find.getId()).isEqualTo(save.getId());
+        assertThat(find.getName()).isEqualTo(save.getName());
+        assertThat(find.getNickname()).isEqualTo(save.getNickname());
+        assertThat(find.getEmail()).isEqualTo(save.getEmail());
+        assertThat(find.getPassword()).isEqualTo(save.getPassword());
+        assertThat(find.getRole()).isEqualTo(save.getRole());
     }
 
     @Test

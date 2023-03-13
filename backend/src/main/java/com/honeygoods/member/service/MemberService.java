@@ -1,6 +1,6 @@
 package com.honeygoods.member.service;
 
-import com.honeygoods.common.error.exception.ErrorCode;
+import com.honeygoods.common.error.exception.ErrorType;
 import com.honeygoods.member.domain.Member;
 import com.honeygoods.member.dto.MemberSignupRequest;
 import com.honeygoods.member.exception.DuplicateEmailException;
@@ -24,10 +24,10 @@ public class MemberService {
     @Transactional
     public void memberSignup(MemberSignupRequest request) {
         if (memberRepository.existsByNickname(request.getNickname())) {
-             throw new DuplicateNicknameException(ErrorCode.DUPLICATE_NICKNAME);
+             throw new DuplicateNicknameException(ErrorType.DUPLICATE_NICKNAME);
         }
         if (memberRepository.existsByEmail(request.getEmail())) {
-             throw new DuplicateEmailException(ErrorCode.DUPLICATE_EMAIL);
+             throw new DuplicateEmailException(ErrorType.DUPLICATE_EMAIL);
         }
         String encoded = passwordEncoder.encode(request.getPassword());
         Member member = Member.builder()
