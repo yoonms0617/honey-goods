@@ -35,3 +35,11 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Config ###
+/src/main/resources/application-local.yml
+/src/main/resources/application-product.yml
+/src/test/resources/application-test.yml
+
+### Security Message ###
+/src/main/resources/message/security-message.properties
