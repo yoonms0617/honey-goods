@@ -1,12 +1,12 @@
 package com.honeygoods.member.exception;
 
 import com.honeygoods.common.error.exception.BaseException;
-import com.honeygoods.common.error.exception.ErrorCode;
+import com.honeygoods.common.error.exception.ErrorType;
 
 public class DuplicateNicknameException extends BaseException {
 
-    public DuplicateNicknameException(ErrorCode errorCode) {
-        super(errorCode);
+    public DuplicateNicknameException(ErrorType errorType) {
+        super(errorType);
     }
 
 }

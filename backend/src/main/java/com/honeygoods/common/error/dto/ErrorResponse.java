@@ -1,6 +1,6 @@
 package com.honeygoods.common.error.dto;
 
-import com.honeygoods.common.error.exception.ErrorCode;
+import com.honeygoods.common.error.exception.ErrorType;
 
 import lombok.Getter;
 
@@ -17,15 +17,15 @@ public class ErrorResponse {
 
     private final String message;
 
-    public ErrorResponse(ErrorCode errorCode) {
+    public ErrorResponse(ErrorType errorType) {
         this.timeStamp = LocalDateTime.now();
-        this.code = errorCode.getCode();
-        this.status = errorCode.getStatus();
-        this.message = errorCode.getMessage();
+        this.code = errorType.getCode();
+        this.status = errorType.getStatus();
+        this.message = errorType.getMessage();
     }
 
-    public static ErrorResponse of(ErrorCode errorCode) {
-        return new ErrorResponse(errorCode);
+    public static ErrorResponse of(ErrorType errorType) {
+        return new ErrorResponse(errorType);
     }
 
 }

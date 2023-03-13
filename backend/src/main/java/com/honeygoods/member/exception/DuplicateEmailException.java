@@ -1,12 +1,12 @@
 package com.honeygoods.member.exception;
 
 import com.honeygoods.common.error.exception.BaseException;
-import com.honeygoods.common.error.exception.ErrorCode;
+import com.honeygoods.common.error.exception.ErrorType;
 
 public class DuplicateEmailException extends BaseException {
 
-    public DuplicateEmailException(ErrorCode errorCode) {
-        super(errorCode);
+    public DuplicateEmailException(ErrorType errorType) {
+        super(errorType);
     }
 
 }
